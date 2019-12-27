@@ -1,0 +1,23 @@
+trigger:
+- master
+pr: none
+
+stages:
+- stage: Build
+  pool:
+    vmImage: ubuntu-18.04
+  jobs:
+  - job: DoBuild
+    workspace:
+      clean: all
+    steps:
+    - powershell: |
+        $hash = '$(Build.SourceVersion)'
+        $buildId = '$(Build.BuildId)'
+        $version = "$($hash.Substring(0, 7)).$buildId"
+        Write-Host "##vso[build.updatebuildnumber]$($version)"
+        mkdir out
+        mv *.ps1 out
+      name: SetVersion
+    - publish: 'out'
+      artifact: 'ReleaseScripts.$(Build.BuildNumber)'
