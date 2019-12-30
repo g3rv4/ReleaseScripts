@@ -1,16 +1,9 @@
-param (
-    [Parameter(Mandatory=$true)]
-    [string]$Environment
-)
-
-$pathKey = "PATH_TO_$($Environment)".ToUpper()
-$path = (Get-Item env:$pathKey).Value
+$path = $env:CONTENT_PATH
+$cfZone = $env:CLOUDFLARE_ZONE
+$cfToken = $env:CLOUDFLARE_APITOKEN
 
 rm -rf $path
 mv staticSite/site $path
-
-$cfZone = $env:CLOUDFLARE_ZONE
-$cfToken = $env:CLOUDFLARE_API_TOKEN
 
 $headers = @{
     "Authorization"="Bearer $($cfToken)";
