@@ -1,3 +1,5 @@
+Set-PSDebug -Trace 1
+
 $path = $env:CONTENT_PATH
 $cfZone = $env:CLOUDFLARE_ZONE
 $cfToken = $env:CLOUDFLARE_APITOKEN

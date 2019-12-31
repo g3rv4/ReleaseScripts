@@ -1,3 +1,5 @@
+Set-PSDebug -Trace 1
+
 $path = $env:APP_PATH
 $dockerComposeYaml = $env:DOCKERCOMPOSE_YAMLPATH
 
