@@ -3,9 +3,10 @@ Set-PSDebug -Trace 1
 $path = $env:CONTENT_PATH
 $cfZone = $env:CLOUDFLARE_ZONE
 $cfToken = $env:CLOUDFLARE_APITOKEN
+$staticFolderContent = if ($env:CONTENT_ARTIFACT) { $env:CONTENT_ARTIFACT } else { "site" }
 
 rm -rf $path
-mv staticSite/site $path
+mv "staticSite/$($staticFolderContent)" $path
 
 $headers = @{
     "Authorization"="Bearer $($cfToken)";
