@@ -13,6 +13,9 @@ $azCDNEndpoint = $OctopusParameters["Azure.CDNEndpoint"]
 
 $packageName = $OctopusParameters["PackageName"]
 $packagePath = $OctopusParameters["Octopus.Action.Package[$($packageName)].ExtractedPath"]
+$packageVersion = $OctopusParameters["Octopus.Action.Package[$($packageName)].PackageVersion"]
+
+$OctopusParameters | ConvertTo-Json | Write-Host
 
 rm -rf $path
 mv $packagePath $path
