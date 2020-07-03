@@ -13,6 +13,7 @@ $azCDNEndpoint = $OctopusParameters["Azure.CDNEndpoint"]
 
 $packagePath = $OctopusParameters["Octopus.Action.Package[Package].ExtractedPath"]
 $packageVersion = $OctopusParameters["Octopus.Action.Package[Package].PackageVersion"]
+$packagePath = "$($packagePath)$($OctopusParameters['PathOnPackage'])"
 
 rm -rf $path
 mv $packagePath $path
