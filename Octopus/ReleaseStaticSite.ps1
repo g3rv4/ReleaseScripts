@@ -1,8 +1,8 @@
 Set-PSDebug -Trace 1
 
 $path = $OctopusParameters["Path"]
-$cfZone = $OctopusParameters["CloudFlare.Zone"]
-$cfToken = $OctopusParameters["CloudFlare.Token"]
+$cfZone = $OctopusParameters["Cloudflare.Zone"]
+$cfToken = $OctopusParameters["Cloudflare.Token"]
 $azSubscriptionId = $OctopusParameters["Azure.SubscriptionId"]
 $azTenantId = $OctopusParameters["Azure.TenantId"]
 $azClientId = $OctopusParameters["Azure.ClientId"]
