@@ -11,8 +11,8 @@ $azResourceGroup = $OctopusParameters["Azure.ResourceGroup"]
 $azCDNProfile = $OctopusParameters["Azure.CDNProfile"]
 $azCDNEndpoint = $OctopusParameters["Azure.CDNEndpoint"]
 
-$packageName = $OctopusParameters["PackageName"]
-$packagePath = $OctopusParameters["Octopus.Action.Package[$($packageName)].ExtractedPath"]
+$packagePath = $OctopusParameters["Octopus.Action.Package[Package].ExtractedPath"]
+$packageVersion = $OctopusParameters["Octopus.Action.Package[Package].PackageVersion"]
 
 rm -rf $path
 mv $packagePath $path
