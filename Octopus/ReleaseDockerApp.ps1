@@ -1,10 +1,20 @@
 Set-PSDebug -Trace 1
 
 $path = $OctopusParameters["App.Path"]
-$packagePath = $OctopusParameters["Octopus.Action.Package[Package].ExtractedPath"]
+$nupkgPath = $OctopusParameters["Octopus.Action.Package[Package].PackageFilePath"]
 $dockerComposeYaml = $OctopusParameters["Yaml.Path"]
 
 rm -rf $path
-mv $packagePath $path
 
-docker-compose -f $dockerComposeYaml restart
+mkdir $path
+mv $nupkgPath $path
+
+Push-Location $path
+unzip -o -j Package.nupkg
+rm Package.nupkg
+Pop-Location
+
+docker-compose -f $dockerComposeYaml restart 2>&1
+if ($LASTEXITCODE) {
+    Exit $LASTEXITCODE
+}
