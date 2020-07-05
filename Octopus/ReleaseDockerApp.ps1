@@ -7,4 +7,7 @@ $dockerComposeYaml = $OctopusParameters["Yaml.Path"]
 rm -rf $path
 mv $packagePath $path
 
-docker-compose -f $dockerComposeYaml restart
+docker-compose -f $dockerComposeYaml restart *>&1
+if ($LASTEXITCODE) {
+    Exit $LASTEXITCODE
+}
