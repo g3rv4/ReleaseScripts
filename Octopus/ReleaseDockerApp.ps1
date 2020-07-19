@@ -8,6 +8,7 @@ rm -rf $path
 mv $packagePath $path
 
 if ($dockerComposeYaml) {
+    Write-Host "About to restart docker!"
     Write-Host "##octopus[stderr-progress]"
     docker-compose -f $dockerComposeYaml restart
     if ($LASTEXITCODE) {
