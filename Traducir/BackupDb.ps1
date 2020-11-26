@@ -5,6 +5,8 @@ $mssqlDataPath = Join-Path $OctopusParameters["MSSQL.Data.Path"] "backup"
 $mssqlPassword = $OctopusParameters["MSSQL.Password"]
 $dbs = $OctopusParameters["MSSQL.Databases"].Split(',')
 
+Write-Host "##octopus[stderr-progress]"
+
 $date = Get-Date (Get-Date).ToUniversalTime() -Format yyyyMMddHHmmss
 
 foreach ($db in $dbs){
