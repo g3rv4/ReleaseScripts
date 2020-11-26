@@ -5,9 +5,6 @@ $packagePath = $OctopusParameters["Octopus.Action.Package[Package].ExtractedPath
 $dockerComposeYaml = $OctopusParameters["Yaml.Path"]
 $instanceNames = $OctopusParameters["DockerInstance.Names"].Split(',')
 
-rm -rf $path
-mv $packagePath $path
-
 Write-Host "##octopus[stderr-progress]"
 
 docker-compose -f $dockerComposeYaml stop
@@ -15,11 +12,11 @@ if ($LASTEXITCODE) {
     Exit $LASTEXITCODE
 }
 
-rm -rf "$($path)/volumes/app"
-mv $packagePath "$($path)/volumes/app"
+rm -rf $path
+mv $packagePath $path
 
-rm -rf "$($staticFilesPath)"
-cp -r "$($path)/volumes/app/wwwroot" $staticFilesPath
+rm -rf $staticFilesPath
+cp -r "$($path)/wwwroot" $staticFilesPath
 
 docker-compose -f $dockerComposeYaml up -d
 if ($LASTEXITCODE) {
