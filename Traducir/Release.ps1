@@ -1,4 +1,5 @@
 Set-PSDebug -Trace 1
+whoami
 
 $path = $OctopusParameters["App.Path"]
 $staticFilesPath = $OctopusParameters["StaticFiles.Path"]
