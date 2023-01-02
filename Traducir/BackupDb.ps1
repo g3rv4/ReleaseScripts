@@ -1,3 +1,5 @@
+Set-PSDebug -Trace 1
+
 $azureContainerName = $OctopusParameters["Azure.Container.Name"]
 $azureDockerPath = $OctopusParameters["Azure.Docker.Path"]
 $azureUploadPath = Join-Path $azureDockerPath 'volumes' 'data'
