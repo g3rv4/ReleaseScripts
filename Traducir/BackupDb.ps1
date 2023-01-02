@@ -1,5 +1,3 @@
-Set-PSDebug -Trace 1
-
 $azureContainerName = $OctopusParameters["Azure.Container.Name"]
 $azureDockerPath = $OctopusParameters["Azure.Docker.Path"]
 $azureUploadPath = Join-Path $azureDockerPath 'volumes' 'data'
@@ -25,7 +23,6 @@ foreach ($db in $dbs){
     tar -czf "$filenameWithPath.tgz" -C $mssqlDataPath "$filename.bak"
 
     rm "$filenameWithPath.bak"
-    Write-Host "moving $filenameWithPath.tgz to $filenameWithAzPath.tgz"
     mv "$filenameWithPath.tgz" "$filenameWithAzPath.tgz"
 
     Write-Output "Uploading $filename.tgz"
