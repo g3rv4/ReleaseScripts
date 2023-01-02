@@ -26,7 +26,7 @@ foreach ($db in $dbs){
     mv "$filenameWithPath.tgz" "$filenameWithAzPath.tgz"
 
     Write-Output "Uploading $filename.tgz"
-    docker-compose --no-ansi -f "$azureDockerPath/docker-compose.yml" run --rm azcli az storage blob upload --container-name $azureContainerName --file "/var/data/$filename.tgz" --name "$filename.tgz"
+    docker compose --no-ansi -f "$azureDockerPath/docker-compose.yml" run --rm azcli az storage blob upload --container-name $azureContainerName --file "/var/data/$filename.tgz" --name "$filename.tgz"
 
     rm "$filenameWithAzPath.tgz"
 }

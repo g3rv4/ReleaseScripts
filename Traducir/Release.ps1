@@ -7,7 +7,7 @@ $instanceNames = $OctopusParameters["DockerInstance.Names"].Split(',')
 
 Write-Host "##octopus[stderr-progress]"
 
-docker-compose -f $dockerComposeYaml stop
+docker compose -f $dockerComposeYaml stop
 if ($LASTEXITCODE) {
     Exit $LASTEXITCODE
 }
@@ -18,7 +18,7 @@ mv $packagePath $path
 rm -rf $staticFilesPath
 cp -r "$($path)/wwwroot" $staticFilesPath
 
-docker-compose -f $dockerComposeYaml up -d
+docker compose -f $dockerComposeYaml up -d
 if ($LASTEXITCODE) {
     Exit $LASTEXITCODE
 }
@@ -37,7 +37,7 @@ foreach ($instanceName in $instanceNames) {
 
 # when messing with multiple containers, nginx gets confused... restarting it clears it up
 if ($instanceNames.Count -gt 1) {
-    docker-compose -f $dockerNginxPath restart
+    docker compose -f $dockerNginxPath restart
     if ($LASTEXITCODE) {
         Exit $LASTEXITCODE
     }
