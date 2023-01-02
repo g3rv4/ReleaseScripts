@@ -25,6 +25,7 @@ foreach ($db in $dbs){
     tar -czf "$filenameWithPath.tgz" -C $mssqlDataPath "$filename.bak"
 
     rm "$filenameWithPath.bak"
+    Write-Host "moving $filenameWithPath.tgz to $filenameWithAzPath.tgz"
     mv "$filenameWithPath.tgz" "$filenameWithAzPath.tgz"
 
     Write-Output "Uploading $filename.tgz"
