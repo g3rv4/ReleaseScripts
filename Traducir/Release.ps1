@@ -1,6 +1,3 @@
-Set-PSDebug -Trace 1
-whoami
-
 $path = $OctopusParameters["App.Path"]
 $staticFilesPath = $OctopusParameters["StaticFiles.Path"]
 $dockerNginxPath = $OctopusParameters["Yaml.Nginx.Path"]

@@ -14,9 +14,9 @@ foreach ($db in $dbs){
     $uid = sh -c 'id -u'
     $gid = sh -c 'id -g'
 
-    docker exec mssql_mssql_1 /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P $mssqlPassword -Q "BACKUP DATABASE [$db] TO DISK = N'/var/opt/mssql/data/backup/$filename.bak' WITH NOFORMAT, NOINIT, SKIP, NOREWIND, NOUNLOAD, STATS = 10"
+    docker exec mssql-mssql-1 /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P $mssqlPassword -Q "BACKUP DATABASE [$db] TO DISK = N'/var/opt/mssql/data/backup/$filename.bak' WITH NOFORMAT, NOINIT, SKIP, NOREWIND, NOUNLOAD, STATS = 10"
 
-    docker exec mssql_mssql_1 chown "$($uid):$($gid)" "/var/opt/mssql/data/backup/$filename.bak"
+    docker exec mssql-mssql-1 chown "$($uid):$($gid)" "/var/opt/mssql/data/backup/$filename.bak"
 
     $filenameWithPath = Join-Path $mssqlDataPath $filename
     $filenameWithAzPath = Join-Path $azureUploadPath $filename
